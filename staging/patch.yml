@@ -1,0 +1,8 @@
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+metadata:
+  name: staging-patch
