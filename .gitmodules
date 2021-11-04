@@ -1,0 +1,3 @@
+[submodule "kube-green"]
+	path = kube-green
+	url = https://github.com/davidebianchi/kube-green.git

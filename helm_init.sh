@@ -3,6 +3,7 @@ helm repo add kube-state-metrics https://kubernetes.github.io/kube-state-metrics
 helm repo add bitnami https://charts.bitnami.com/bitnami
 
 helm repo update
+git submodule update --init
 
 ### Monitoring tooling
 # helm template prometheus prometheus-community/prometheus -n monitoring > generated/prometheus.yml
@@ -27,8 +28,12 @@ helm template mongodb bitnami/mongodb -n staging > staging/generated/mongo.yml
 ### Same, production
 helm template redis bitnami/redis -n production > production/generated/redis.yml
 helm template mongodb bitnami/mongodb -n production > production/generated/mongo.yml
-###
-###
 
-### If all is well run:
-# kubectl apply -k staging/kustomization.yml
+
+### Apply everything :)
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.0/cert-manager.yaml
+cd kube-green && make deploy && cd ..
+
+kubectl apply -k staging
+kubectl apply -k production
+kubectl apply -f generated/*
