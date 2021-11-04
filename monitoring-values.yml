@@ -1,0 +1,16 @@
+grafana:
+  persistance:
+    enabled: true
+  adminPassword: "test"
+prometheus:
+  persistance:
+    enabled: true
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          resources:
+            requests:
+              storage: 1Gi
+

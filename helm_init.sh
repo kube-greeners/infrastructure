@@ -8,23 +8,7 @@ git submodule add -f https://github.com/davidebianchi/kube-green.git kube-green
 git submodule update --init
 
 ### Monitoring tooling
-helm template prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --set grafana.persistence.enabled=true --set grafana.adminPassword="test" > generated/prometheus.yml
-
-# Grafana
-# kubectl -n monitoring port-forward $(kubectl get pod -n monitoring -l "app.kubernetes.io/name=grafana" -o jsonpath="{.items[0].metadata.name}") 3000
-
-
-# Alert manager
-# export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=alertmanager" -o jsonpath="{.items[0].metadata.name}")
-# kubectl --namespace monitoring port-forward $POD_NAME 9093
-
-# Prometheus server
-# export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
-# kubectl --namespace monitoring port-forward $POD_NAME 9090
-
-# Push Gateway
-# export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
-# kubectl --namespace monitoring port-forward $POD_NAME 9091
+helm template prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring -f ./monitoring-values.yml > generated/prometheus.yml
 
 ### Some staging databases
 helm template redis bitnami/redis -n staging > staging/generated/redis.yml
@@ -36,9 +20,14 @@ helm template mongodb bitnami/mongodb -n production > production/generated/mongo
 
 
 ### Apply everything :)
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.0/cert-manager.yaml
-cd kube-green && make deploy && cd ..
+
+# There is no reason to re-deploy kube-green
+# kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.0/cert-manager.yaml
+# cd kube-green && make deploy && cd ..
 
 kubectl apply -k staging
 kubectl apply -k production
-kubectl apply -f generated/*
+
+
+# If we apply the monitoring resources everything restarts from 0, so let's not do it :D.
+# kubectl apply -f generated/*
