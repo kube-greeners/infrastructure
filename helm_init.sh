@@ -2,12 +2,17 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add kube-state-metrics https://kubernetes.github.io/kube-state-metrics
 helm repo add bitnami https://charts.bitnami.com/bitnami
 
-helm repo update
+# helm repo update
+# You can't for some reason have git ignore your submodule, so we re-initialize it each time
+git submodule add -f https://github.com/davidebianchi/kube-green.git kube-green
 git submodule update --init
 
 ### Monitoring tooling
-# helm template prometheus prometheus-community/prometheus -n monitoring > generated/prometheus.yml
-helm template prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring > generated/prometheus.yml
+helm template prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --set grafana.persistence.enabled=true --set grafana.adminPassword="test" > generated/prometheus.yml
+
+# Grafana
+# kubectl -n monitoring port-forward $(kubectl get pod -n monitoring -l "app.kubernetes.io/name=grafana" -o jsonpath="{.items[0].metadata.name}") 3000
+
 
 # Alert manager
 # export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=alertmanager" -o jsonpath="{.items[0].metadata.name}")
