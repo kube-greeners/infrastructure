@@ -1,0 +1,16 @@
+# Set the time to the interval you want to test and apply
+
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: test
+  namespace: staging
+spec:
+  weekdays: "5-6"
+  sleepAt: "01:10"
+  wakeUpAt: "01:20"
+  timeZone: "Europe/Rome"
+#  excludeRef:
+#    - apiVersion: "apps/v1"
+#      kind:       Deployment
+#      name:       api-gateway
