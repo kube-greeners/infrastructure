@@ -4,6 +4,7 @@ namespace: staging
 resources:
   - generated/mongo.yml
   - generated/redis.yml
+  - apps/django.yml
 patches:
   - path: patch.yml
     target:

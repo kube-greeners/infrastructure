@@ -16,8 +16,7 @@ spec:
         app: django
     spec:
       containers:
-        - image: localhost:5000/infrastructure-django:latest
-          imagePullPolicy: Never
+        - image: ghcr.io/kube-greeners/infrastructure/django:latest
           name: django
           ports:
             - containerPort: 8000
