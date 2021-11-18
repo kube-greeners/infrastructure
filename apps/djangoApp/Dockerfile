@@ -10,7 +10,6 @@ RUN pip install -r requirements.txt
 
 COPY manage.py manage.py
 COPY djangoApp djangoApp
-COPY templates templates
 COPY app app
 
 RUN python manage.py makemigrations
