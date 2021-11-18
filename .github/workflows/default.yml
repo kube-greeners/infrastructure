@@ -22,3 +22,11 @@ jobs:
           image-name: django
           build-context: ./apps/djangoApp
           dockerfile: ./apps/djangoApp/Dockerfile
+
+      - name: Publish Node Image
+        uses: VaultVulp/gp-docker-action@1.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: node
+          build-context: ./apps/nodeApp
+          dockerfile: ./apps/nodeApp/Dockerfile
