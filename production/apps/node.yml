@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+  namespace: production
+  labels:
+    app: node
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+        - image: ghcr.io/kube-greeners/infrastructure/node:latest
+          name: node
+          ports:
+            - containerPort: 3000
+              name: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node
+  labels:
+    app: node
+spec:
+  type: ClusterIP
+  selector:
+    app: node
+  ports:
+    - port: 3000
+      targetPort: 3000
