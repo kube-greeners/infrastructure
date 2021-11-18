@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+  namespace: staging
+  labels:
+    app: django
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+        - image: localhost:5000/infrastructure-django:latest
+          imagePullPolicy: Never
+          name: django
+          ports:
+            - containerPort: 8000
+              name: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django
+  labels:
+    app: django
+spec:
+  type: ClusterIP
+  selector:
+    app: django
+  ports:
+    - port: 8000
+      targetPort: 8000

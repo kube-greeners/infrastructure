@@ -31,3 +31,7 @@ kubectl apply -k production
 
 # If we apply the monitoring resources everything restarts from 0, so let's not do it :D.
 # kubectl apply -f generated/*
+
+# Docker local registry
+docker run -d -p 5000:5000 --restart=always --name kg-registry registry:2
+cd apps/djangoApp && source ./make_image.sh && kubectl apply -f ./k8s.yml && cd ../..
