@@ -1,0 +1,23 @@
+name: Push Docker Images
+
+on:
+  push:
+    branches: [ feature/*, master, bugfix/* ]
+  pull_request:
+    branches: [ feature/*, master, bugfix/* ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Publish Django Image
+        uses: VaultVulp/gp-docker-action@1.1.12
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: my-cool-service
+          build-context: ./apps/djangoApp
