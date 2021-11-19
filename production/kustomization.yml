@@ -4,6 +4,8 @@ namespace: production
 resources:
   - generated/mongo.yml
   - generated/redis.yml
+  - apps/django.yml
+  - apps/node.yml
 patches:
   - path: patch.yml
     target:

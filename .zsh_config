@@ -1,0 +1,4 @@
+
+alias kp='kubectl -n production'
+alias ks='kubectl -n staging'
+alias km='kubectl -n monitoring'
