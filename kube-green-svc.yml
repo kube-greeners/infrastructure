@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: prometheus-svc
+  namespace: kube-green
+spec:
+  ports:
+    - port: 8080
+      name: ours
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    control-plane: controller-manager
+  type: ClusterIP

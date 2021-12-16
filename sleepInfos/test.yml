@@ -6,11 +6,34 @@ metadata:
   name: test
   namespace: staging
 spec:
-  weekdays: "5-6"
-  sleepAt: "01:10"
-  wakeUpAt: "01:20"
+  weekdays: "*"
+  sleepAt: "22:15"
+  wakeUpAt: "22:20"
   timeZone: "Europe/Rome"
 #  excludeRef:
 #    - apiVersion: "apps/v1"
 #      kind:       Deployment
 #      name:       api-gateway
+---
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: test-prod
+  namespace: production
+spec:
+  weekdays: "*"
+  sleepAt: "22:20"
+  wakeUpAt: "22:30"
+  timeZone: "Europe/Rome"
+
+---
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: test-prod-next
+  namespace: production
+spec:
+  weekdays: "*"
+  sleepAt: "00:10"
+  wakeUpAt: "00:15"
+  timeZone: "Europe/Rome"

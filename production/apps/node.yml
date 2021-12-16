@@ -21,6 +21,14 @@ spec:
           ports:
             - containerPort: 3000
               name: app
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "300m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+
 ---
 apiVersion: v1
 kind: Service

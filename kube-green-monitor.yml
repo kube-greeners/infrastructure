@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  generation: 1
+  labels:
+    release: prometheus-stack
+    control-plane: controller-manager
+  name: kube-green-controller-manager-metrics-monitor
+  namespace: monitoring
+spec:
+  endpoints:
+  - path: /metrics
+    port: ours
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      control-plane: controller-manager
