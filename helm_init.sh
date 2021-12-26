@@ -22,12 +22,15 @@ helm template mongodb bitnami/mongodb -n production > production/generated/mongo
 ### Apply everything :)
 
 # There is no reason to re-deploy kube-green
-# kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.0/cert-manager.yaml
-# cd kube-green && make deploy && cd ..
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.0/cert-manager.yaml
+cd kube-green && make deploy && cd ..
 
 kubectl apply -k staging
 kubectl apply -k production
 
 
 # If we apply the monitoring resources everything restarts from 0, so let's not do it :D.
-# kubectl apply -f generated/*
+kubectl apply -f generated/*
+
+# Apply sleepInfos
+kubectl apply -f sleepInfos/test.yml
