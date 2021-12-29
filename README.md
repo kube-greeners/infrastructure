@@ -50,7 +50,7 @@
 
 ## About The Project
 
-This project, as a part of the Dashboard for kube-green project intends to provide the core infrastructure needs to provision a testing cluster to test both the backend and frontend of kube-green.
+This project, as a part of the Dashboard for kube-green project intends to provide Kubernetes resource specifications to create and configure a testing cluster to test both the backend and frontend of kube-green.
 So, this project doesn't contribute to the project itself, however it provides the basic backbone to develop, test and verify the functionalities of the project.
 Within this project, contents of resources, that can be directly or indirectly applied to an empty Kubernetes cluster, are defined and used to create the first cluster to test this project.
 
@@ -145,6 +145,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * Ragnhild Kleiven [@RagnhildK](https://github.com/RagnhildK)
 * Hanna Torjusen [@hanntorj](https://github.com/hanntorj)
 * Marija Popovic [@marijapopovic28](https://github.com/marijapopovic28)
+* Amila Cizmic [@amilacizmic](https://github.com/amilacizmic)
 ### Acknowledgements:
 We would like to thank:
 * Malvina Latifaj and Samuele Giussani for their assistance and feedback through this project and for sharing this journey with us.
