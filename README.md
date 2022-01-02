@@ -76,7 +76,7 @@ Within this project, contents of resources, that can be directly or indirectly a
 * [Django Framework](https://www.djangoproject.com/)
 * [Express.js](https://expressjs.com/)
 
-##### README is based on [this](https://github.com/othneildrew/Best-README-Template)
+##### README is based on [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Getting Started
