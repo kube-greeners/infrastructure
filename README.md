@@ -1,5 +1,3 @@
-<img src="https://github.com/kube-greeners/infrastructure/blob/master/image/logo.png" width="400" height="400" />
-
 <div id="top"></div>
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -10,7 +8,7 @@
 
 <br />
 <div align="center">
-
+<img src="https://github.com/kube-greeners/infrastructure/blob/master/image/logo.png" width="250" height="250" />
 <h3 align="center">kube-green Dashboard Infrastructure</h3>
 
   <p align="center">
